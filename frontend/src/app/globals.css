@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 * {
-  overflow: hidden;
   scrollbar-width: none;
   scroll-behavior: smooth;
   transition: all ease .5s;
@@ -10,9 +9,10 @@
 body {
   width: 100vw;
   height: 100vh;
-  background-color: rgb(156, 156, 156);
+  background-color: rgb(194, 255, 198);
   font-weight: 900;
   user-select: none;
+  overflow: hidden;
 }
 
 button:hover,

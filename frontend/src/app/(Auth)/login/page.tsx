@@ -42,7 +42,8 @@ export default function LoginForm() {
 
     const handleGoogleLogin = async () => {
         try {
-            await dispatch(googleLogin()).unwrap()
+            const res=await dispatch(googleLogin()).unwrap()
+            console.log("🚀 ~ handleGoogleLogin ~ res:", res)
             router.replace("/")
         } catch (error) {
             console.error(error)

@@ -9,5 +9,5 @@ export interface AuthState {
   user: User | null
   loading: boolean
   error: string | null
-  status: string | 'pending'
+  status: "pending" | "succeed" | "rejected"
 }

@@ -10,6 +10,7 @@ import {
 } from "firebase/auth"
 import { auth } from "@/lib/firebase"
 import { User } from "./authtype"
+import { saveUserToDB } from "@/lib/firebaseStore/userService/userService"
 
 const mapUser = (user: any): User => ({
     uid: user.uid,
@@ -20,12 +21,10 @@ const mapUser = (user: any): User => ({
 
 export const signupUser = createAsyncThunk(
     "auth/signup",
-    async (
-        { email, password }: { email: string; password: string },
-        { rejectWithValue }
-    ) => {
+    async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
         try {
-            const res = await createUserWithEmailAndPassword(auth, email, password)
+            const res = await createUserWithEmailAndPassword(auth, email, password);
+            await saveUserToDB(res.user)
             return mapUser(res.user)
         } catch (error: any) {
             return rejectWithValue(error.message)
@@ -35,12 +34,10 @@ export const signupUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
     "auth/login",
-    async (
-        { email, password }: { email: string; password: string },
-        { rejectWithValue }
-    ) => {
+    async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
         try {
-            const res = await signInWithEmailAndPassword(auth, email, password)
+            const res = await signInWithEmailAndPassword(auth, email, password);
+            await saveUserToDB(res.user)
             return mapUser(res.user)
         } catch (error: any) {
             return rejectWithValue(error.message)
@@ -52,8 +49,9 @@ export const googleLogin = createAsyncThunk(
     "auth/google",
     async (_, { rejectWithValue }) => {
         try {
-            const provider = new GoogleAuthProvider()
-            const res = await signInWithPopup(auth, provider)
+            const provider = new GoogleAuthProvider();
+            const res = await signInWithPopup(auth, provider);
+            await saveUserToDB(res.user)
             return mapUser(res.user)
         } catch (error: any) {
             return rejectWithValue(error.message)

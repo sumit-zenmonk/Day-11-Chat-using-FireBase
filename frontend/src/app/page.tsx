@@ -1,23 +1,20 @@
 "use client"
 
 import styles from "./home.module.css"
-import { logoutUser } from "@/redux/feature/Auth/authAction"
-import { AppDispatch, RootState } from "@/redux/store"
+import { RootState } from "@/redux/store"
 import { useRouter } from "next/navigation"
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 import {
   Avatar,
   Box,
   Button,
   Card,
-  CardContent,
   Typography
 } from "@mui/material"
 
 export default function Home() {
-  const dispatch = useDispatch<AppDispatch>()
   const { user, loading } = useSelector((state: RootState) => state.authReducer)
   const router = useRouter()
 

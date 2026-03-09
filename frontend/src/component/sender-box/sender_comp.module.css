@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5em 1%;
+    /* background-color: #acffe1; */
+    border-bottom: 0.05em solid #ddd;
+    border-radius: 100px;
+}
+
+.inputWrapper {
+    flex: 1;
+    margin-right: 2%;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 0.5em;
+    flex-shrink: 0;
+}
+
+.actionButton {
+    min-width: auto;
+    aspect-ratio: 1 / 1;
+    padding: 0.5em;
+}

@@ -95,7 +95,7 @@ export default function SignupForm() {
                     </Button>
 
                     <Button
-                        variant="outlined"
+                        // variant="outlined"
                         className={styles.loginBtn}
                         onClick={() => router.replace("/login")}
                     >
